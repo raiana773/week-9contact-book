@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import AddContact from "./components/AddContact/AddContact";
+import ContactsList from "./components/ContactsList/ContactsList";
 
-function App() {
+const App = () => {
+  const [contacts, setContacts] = useState([]);
+
+  function hedleNewContact(newCotact) {
+    // console.log(newCotact);
+    const newContactsArray = [...contacts];
+    newContactsArray.push(newCotact);
+    setContacts(newContactsArray);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <AddContact hedleNewContact={hedleNewContact} />
+      <ContactsList contacts={contacts} />
     </div>
   );
-}
+};
 
 export default App;
